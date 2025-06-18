@@ -6,7 +6,7 @@ A complete Maven-based Java 11 Risk Assessment application with Angular frontend
 ## Technology Stack
 - **Backend**: Java 11, Spring Boot 2.7.18, Maven
 - **Frontend**: Angular 20.0.3, TypeScript, CSS
-- **Database**: H2 in-memory database (configured for easy testing)
+- **Database**: MySQL 8.0.42 (persistent database with risk_assessment schema)
 - **Testing**: JUnit Jupiter, Mockito, JaCoCo for coverage
 
 ## Features
@@ -55,9 +55,10 @@ A complete Maven-based Java 11 Risk Assessment application with Angular frontend
    - CORS configuration for frontend integration
 
 ### Database
-- H2 in-memory database with `risk` table
+- MySQL 8.0.42 persistent database with `risk_assessment` schema
 - Automatic schema creation with JPA/Hibernate
-- Console available at `/h2-console` for debugging
+- User: `riskuser` with password authentication
+- Risk table with all required columns for persistent data storage
 
 ## Test Coverage
 - **94% Code Coverage** (exceeds 80% requirement)
@@ -100,6 +101,29 @@ risk-assessment-app/
 - Java 11
 - Node.js and npm
 - Maven
+
+### Prerequisites
+- Java 11
+- Node.js and npm
+- Maven
+- MySQL 8.0+ server
+
+### MySQL Setup
+```bash
+# Install MySQL server
+sudo apt update && sudo apt install -y mysql-server
+
+# Secure MySQL installation
+sudo mysql_secure_installation
+
+# Create database and user
+sudo mysql -u root
+CREATE DATABASE risk_assessment;
+CREATE USER 'riskuser'@'localhost' IDENTIFIED BY 'riskpass123';
+GRANT ALL PRIVILEGES ON risk_assessment.* TO 'riskuser'@'localhost';
+FLUSH PRIVILEGES;
+exit
+```
 
 ### Backend Setup
 ```bash
