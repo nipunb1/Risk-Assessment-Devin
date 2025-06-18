@@ -2,7 +2,8 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "cli": {
-    "packageManager": "npm"
+    "packageManager": "npm",
+    "analytics": false
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -62,7 +63,8 @@
               "buildTarget": "risk-assessment-frontend:build:production"
             },
             "development": {
-              "buildTarget": "risk-assessment-frontend:build:development"
+              "buildTarget": "risk-assessment-frontend:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

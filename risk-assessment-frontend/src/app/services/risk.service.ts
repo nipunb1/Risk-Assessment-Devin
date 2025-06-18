@@ -7,7 +7,7 @@ import { Risk, RiskEnums } from '../models/risk.model';
   providedIn: 'root'
 })
 export class RiskService {
-  private apiUrl = 'http://localhost:8080/api/risks';
+  private apiUrl = '/api/risks';
 
   constructor(private http: HttpClient) { }
 
