@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RiskDTO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">risk-assessment-backend</a> &gt; <a href="index.source.html" class="el_package">com.riskassessment.dto</a> &gt; <span class="el_source">RiskDTO.java</span></div><h1>RiskDTO.java</h1><pre class="source lang-java linenums">package com.riskassessment.dto;
+
+import com.riskassessment.entity.Risk;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
+
+public class RiskDTO {
+    
+    private Long riskId;
+    
+    @NotNull
+    private LocalDate riskDate;
+    
+    @NotNull
+    private Risk.RiskType riskType;
+    
+    @NotNull
+    private Risk.RiskProbability riskProbability;
+    
+    @NotBlank
+    private String riskDesc;
+    
+    @NotNull
+    private Risk.RiskStatus riskStatus;
+    
+    private String riskRemarks;
+    
+<span class="fc" id="L29">    public RiskDTO() {}</span>
+    
+<span class="fc" id="L31">    public RiskDTO(Risk risk) {</span>
+<span class="fc" id="L32">        this.riskId = risk.getRiskId();</span>
+<span class="fc" id="L33">        this.riskDate = risk.getRiskDate();</span>
+<span class="fc" id="L34">        this.riskType = risk.getRiskType();</span>
+<span class="fc" id="L35">        this.riskProbability = risk.getRiskProbability();</span>
+<span class="fc" id="L36">        this.riskDesc = risk.getRiskDesc();</span>
+<span class="fc" id="L37">        this.riskStatus = risk.getRiskStatus();</span>
+<span class="fc" id="L38">        this.riskRemarks = risk.getRiskRemarks();</span>
+<span class="fc" id="L39">    }</span>
+    
+    public Risk toEntity() {
+<span class="fc" id="L42">        Risk risk = new Risk();</span>
+<span class="fc" id="L43">        risk.setRiskId(this.riskId);</span>
+<span class="fc" id="L44">        risk.setRiskDate(this.riskDate);</span>
+<span class="fc" id="L45">        risk.setRiskType(this.riskType);</span>
+<span class="fc" id="L46">        risk.setRiskProbability(this.riskProbability);</span>
+<span class="fc" id="L47">        risk.setRiskDesc(this.riskDesc);</span>
+<span class="fc" id="L48">        risk.setRiskStatus(this.riskStatus);</span>
+<span class="fc" id="L49">        risk.setRiskRemarks(this.riskRemarks);</span>
+<span class="fc" id="L50">        return risk;</span>
+    }
+    
+    public Long getRiskId() {
+<span class="fc" id="L54">        return riskId;</span>
+    }
+    
+    public void setRiskId(Long riskId) {
+<span class="fc" id="L58">        this.riskId = riskId;</span>
+<span class="fc" id="L59">    }</span>
+    
+    public LocalDate getRiskDate() {
+<span class="fc" id="L62">        return riskDate;</span>
+    }
+    
+    public void setRiskDate(LocalDate riskDate) {
+<span class="fc" id="L66">        this.riskDate = riskDate;</span>
+<span class="fc" id="L67">    }</span>
+    
+    public Risk.RiskType getRiskType() {
+<span class="fc" id="L70">        return riskType;</span>
+    }
+    
+    public void setRiskType(Risk.RiskType riskType) {
+<span class="fc" id="L74">        this.riskType = riskType;</span>
+<span class="fc" id="L75">    }</span>
+    
+    public Risk.RiskProbability getRiskProbability() {
+<span class="fc" id="L78">        return riskProbability;</span>
+    }
+    
+    public void setRiskProbability(Risk.RiskProbability riskProbability) {
+<span class="fc" id="L82">        this.riskProbability = riskProbability;</span>
+<span class="fc" id="L83">    }</span>
+    
+    public String getRiskDesc() {
+<span class="fc" id="L86">        return riskDesc;</span>
+    }
+    
+    public void setRiskDesc(String riskDesc) {
+<span class="fc" id="L90">        this.riskDesc = riskDesc;</span>
+<span class="fc" id="L91">    }</span>
+    
+    public Risk.RiskStatus getRiskStatus() {
+<span class="fc" id="L94">        return riskStatus;</span>
+    }
+    
+    public void setRiskStatus(Risk.RiskStatus riskStatus) {
+<span class="fc" id="L98">        this.riskStatus = riskStatus;</span>
+<span class="fc" id="L99">    }</span>
+    
+    public String getRiskRemarks() {
+<span class="fc" id="L102">        return riskRemarks;</span>
+    }
+    
+    public void setRiskRemarks(String riskRemarks) {
+<span class="fc" id="L106">        this.riskRemarks = riskRemarks;</span>
+<span class="fc" id="L107">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

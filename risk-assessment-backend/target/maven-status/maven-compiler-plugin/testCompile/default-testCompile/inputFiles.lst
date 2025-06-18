@@ -1,0 +1,4 @@
+/home/ubuntu/risk-assessment-app/risk-assessment-backend/src/test/java/com/riskassessment/entity/RiskTest.java
+/home/ubuntu/risk-assessment-app/risk-assessment-backend/src/test/java/com/riskassessment/controller/RiskControllerTest.java
+/home/ubuntu/risk-assessment-app/risk-assessment-backend/src/test/java/com/riskassessment/service/RiskServiceTest.java
+/home/ubuntu/risk-assessment-app/risk-assessment-backend/src/test/java/com/riskassessment/dto/RiskDTOTest.java

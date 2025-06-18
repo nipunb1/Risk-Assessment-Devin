@@ -1,0 +1,4 @@
+com/riskassessment/controller/RiskControllerTest.class
+com/riskassessment/dto/RiskDTOTest.class
+com/riskassessment/service/RiskServiceTest.class
+com/riskassessment/entity/RiskTest.class

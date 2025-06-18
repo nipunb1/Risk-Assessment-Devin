@@ -1,0 +1,72 @@
+<div class="dashboard-container">
+  <div class="header">
+    <h1>Risk Assessment Dashboard</h1>
+    <button class="btn btn-primary" routerLink="/create-risk">Create New Risk</button>
+  </div>
+
+  <div class="filters">
+    <label for="statusFilter">Filter by Status:</label>
+    <select id="statusFilter" [(ngModel)]="selectedStatus" (change)="onStatusFilterChange(selectedStatus)" class="form-select">
+      <option value="ALL">All Statuses</option>
+      <option value="OPEN">Open</option>
+      <option value="IN_PROGRESS">In Progress</option>
+      <option value="CLOSED">Closed</option>
+    </select>
+  </div>
+
+  <div class="content">
+    <div *ngIf="loading" class="loading">
+      <p>Loading risks...</p>
+    </div>
+
+    <div *ngIf="error" class="error">
+      <p>{{ error }}</p>
+      <button class="btn btn-secondary" (click)="loadRisks()">Retry</button>
+    </div>
+
+    <div *ngIf="!loading && !error" class="risks-table-container">
+      <table class="risks-table" *ngIf="filteredRisks.length > 0">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Probability</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Remarks</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let risk of filteredRisks">
+            <td>{{ risk.riskId }}</td>
+            <td>{{ risk.riskDate | date:'shortDate' }}</td>
+            <td>{{ getRiskTypeDisplay(risk.riskType) }}</td>
+            <td>
+              <span class="probability-badge" [ngClass]="getProbabilityClass(risk.riskProbability)">
+                {{ getRiskProbabilityDisplay(risk.riskProbability) }}
+              </span>
+            </td>
+            <td class="description-cell">{{ risk.riskDesc }}</td>
+            <td>
+              <span class="status-badge" [ngClass]="getStatusClass(risk.riskStatus)">
+                {{ getRiskStatusDisplay(risk.riskStatus) }}
+              </span>
+            </td>
+            <td class="remarks-cell">{{ risk.riskRemarks }}</td>
+            <td class="actions-cell">
+              <button class="btn btn-sm btn-secondary" [routerLink]="['/edit-risk', risk.riskId]">Edit</button>
+              <button class="btn btn-sm btn-danger" (click)="deleteRisk(risk.riskId!)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div *ngIf="filteredRisks.length === 0" class="no-risks">
+        <p>No risks found.</p>
+        <button class="btn btn-primary" routerLink="/create-risk">Create First Risk</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RiskController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">risk-assessment-backend</a> &gt; <a href="index.source.html" class="el_package">com.riskassessment.controller</a> &gt; <span class="el_source">RiskController.java</span></div><h1>RiskController.java</h1><pre class="source lang-java linenums">package com.riskassessment.controller;
+
+import com.riskassessment.dto.RiskDTO;
+import com.riskassessment.entity.Risk;
+import com.riskassessment.service.RiskService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@RequestMapping(&quot;/api/risks&quot;)
+@CrossOrigin(origins = &quot;*&quot;)
+<span class="fc" id="L18">public class RiskController {</span>
+    
+    @Autowired
+    private RiskService riskService;
+    
+    @GetMapping
+    public ResponseEntity&lt;List&lt;RiskDTO&gt;&gt; getAllRisks() {
+<span class="fc" id="L25">        List&lt;RiskDTO&gt; risks = riskService.getAllRisks();</span>
+<span class="fc" id="L26">        return ResponseEntity.ok(risks);</span>
+    }
+    
+    @GetMapping(&quot;/{id}&quot;)
+    public ResponseEntity&lt;RiskDTO&gt; getRiskById(@PathVariable Long id) {
+<span class="fc" id="L31">        Optional&lt;RiskDTO&gt; risk = riskService.getRiskById(id);</span>
+<span class="fc" id="L32">        return risk.map(ResponseEntity::ok)</span>
+<span class="fc" id="L33">                  .orElse(ResponseEntity.notFound().build());</span>
+    }
+    
+    @PostMapping
+    public ResponseEntity&lt;RiskDTO&gt; createRisk(@Valid @RequestBody RiskDTO riskDTO) {
+<span class="fc" id="L38">        RiskDTO createdRisk = riskService.createRisk(riskDTO);</span>
+<span class="fc" id="L39">        return ResponseEntity.status(HttpStatus.CREATED).body(createdRisk);</span>
+    }
+    
+    @PutMapping(&quot;/{id}&quot;)
+    public ResponseEntity&lt;RiskDTO&gt; updateRisk(@PathVariable Long id, @Valid @RequestBody RiskDTO riskDTO) {
+<span class="fc" id="L44">        Optional&lt;RiskDTO&gt; updatedRisk = riskService.updateRisk(id, riskDTO);</span>
+<span class="fc" id="L45">        return updatedRisk.map(ResponseEntity::ok)</span>
+<span class="fc" id="L46">                         .orElse(ResponseEntity.notFound().build());</span>
+    }
+    
+    @DeleteMapping(&quot;/{id}&quot;)
+    public ResponseEntity&lt;Void&gt; deleteRisk(@PathVariable Long id) {
+<span class="fc" id="L51">        boolean deleted = riskService.deleteRisk(id);</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">        return deleted ? ResponseEntity.noContent().build() </span>
+<span class="fc" id="L53">                      : ResponseEntity.notFound().build();</span>
+    }
+    
+    @GetMapping(&quot;/status/{status}&quot;)
+    public ResponseEntity&lt;List&lt;RiskDTO&gt;&gt; getRisksByStatus(@PathVariable Risk.RiskStatus status) {
+<span class="fc" id="L58">        List&lt;RiskDTO&gt; risks = riskService.getRisksByStatus(status);</span>
+<span class="fc" id="L59">        return ResponseEntity.ok(risks);</span>
+    }
+    
+    @GetMapping(&quot;/type/{type}&quot;)
+    public ResponseEntity&lt;List&lt;RiskDTO&gt;&gt; getRisksByType(@PathVariable Risk.RiskType type) {
+<span class="nc" id="L64">        List&lt;RiskDTO&gt; risks = riskService.getRisksByType(type);</span>
+<span class="nc" id="L65">        return ResponseEntity.ok(risks);</span>
+    }
+    
+    @GetMapping(&quot;/probability/{probability}&quot;)
+    public ResponseEntity&lt;List&lt;RiskDTO&gt;&gt; getRisksByProbability(@PathVariable Risk.RiskProbability probability) {
+<span class="nc" id="L70">        List&lt;RiskDTO&gt; risks = riskService.getRisksByProbability(probability);</span>
+<span class="nc" id="L71">        return ResponseEntity.ok(risks);</span>
+    }
+    
+    @GetMapping(&quot;/enums&quot;)
+    public ResponseEntity&lt;EnumValues&gt; getEnumValues() {
+<span class="fc" id="L76">        EnumValues enumValues = new EnumValues();</span>
+<span class="fc" id="L77">        return ResponseEntity.ok(enumValues);</span>
+    }
+    
+<span class="fc" id="L80">    public static class EnumValues {</span>
+<span class="fc" id="L81">        public Risk.RiskType[] riskTypes = Risk.RiskType.values();</span>
+<span class="fc" id="L82">        public Risk.RiskProbability[] riskProbabilities = Risk.RiskProbability.values();</span>
+<span class="fc" id="L83">        public Risk.RiskStatus[] riskStatuses = Risk.RiskStatus.values();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
