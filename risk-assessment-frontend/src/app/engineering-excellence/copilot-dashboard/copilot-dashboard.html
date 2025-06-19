@@ -46,4 +46,80 @@
       </div>
     </div>
   </div>
+
+  <div class="details-section" *ngIf="!loading && !error">
+    <h3>Copilot Details</h3>
+    
+    <div class="filters-container">
+      <div class="filter-group">
+        <label for="lobFilter">LoB:</label>
+        <select id="lobFilter" [(ngModel)]="selectedLob" (change)="onLobChange()" class="form-select">
+          <option *ngFor="let lob of availableLobs" [value]="lob">{{ lob }}</option>
+        </select>
+      </div>
+      
+      <div class="filter-group">
+        <label for="projectFilter">Project Name:</label>
+        <select id="projectFilter" [(ngModel)]="selectedProject" (change)="onProjectChange()" class="form-select" [disabled]="!selectedLob || selectedLob === 'All'">
+          <option *ngFor="let project of availableProjects" [value]="project">{{ project }}</option>
+        </select>
+      </div>
+      
+      <div class="filter-group">
+        <label for="monthFilter">Reporting Month:</label>
+        <select id="monthFilter" [(ngModel)]="selectedDetailMonth" class="form-select" [disabled]="!selectedLob || selectedLob === 'All'">
+          <option *ngFor="let month of availableDetailMonths" [value]="month">{{ month }}</option>
+        </select>
+      </div>
+      
+      <button class="btn btn-primary search-btn" (click)="searchDetails()" [disabled]="filtersLoading">
+        Search
+      </button>
+    </div>
+    
+    <div class="details-table-container" *ngIf="!detailsLoading">
+      <table class="dashboard-table" *ngIf="detailsData.length > 0">
+        <thead>
+          <tr>
+            <th>LoB</th>
+            <th>Lob-1</th>
+            <th>Project Name</th>
+            <th>Reporting Month</th>
+            <th>Project Headcount</th>
+            <th>Engineering Population%</th>
+            <th>License Usage</th>
+            <th>Actual License Usage</th>
+            <th>Applicable Efficiency</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let detail of detailsData">
+            <td class="lob-cell">{{ detail.lob }}</td>
+            <td>{{ detail.lobMinusOne }}</td>
+            <td>{{ detail.projectName }}</td>
+            <td>{{ detail.reportingMonth }}</td>
+            <td>{{ detail.projectHeadcount }}</td>
+            <td class="metric-cell">{{ detail.engineeringPopulationPercent | number:'1.2-2' }}%</td>
+            <td class="metric-cell">{{ detail.licenseUsage | number:'1.2-2' }}%</td>
+            <td class="metric-cell">{{ detail.actualLicenseUsage | number:'1.2-2' }}%</td>
+            <td class="metric-cell">{{ detail.applicableEfficiency | number:'1.2-2' }}%</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <div class="pagination-container" *ngIf="detailsPage && detailsPage.totalPages > 1">
+        <button class="btn btn-secondary" (click)="previousPage()" [disabled]="!detailsPage.hasPrevious">Previous</button>
+        <span class="page-info">Page {{ detailsPage.currentPage + 1 }} of {{ detailsPage.totalPages }}</span>
+        <button class="btn btn-secondary" (click)="nextPage()" [disabled]="!detailsPage.hasNext">Next</button>
+      </div>
+      
+      <div *ngIf="detailsData.length === 0" class="no-data">
+        <p>No details data available for the selected filters.</p>
+      </div>
+    </div>
+    
+    <div *ngIf="detailsLoading" class="loading">
+      <p>Loading details data...</p>
+    </div>
+  </div>
 </div>
