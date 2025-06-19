@@ -1,0 +1,49 @@
+<div class="copilot-dashboard-container">
+  <div class="header">
+    <h2>Copilot Dashboard</h2>
+    <div class="month-filter">
+      <label for="monthSelect">Month:</label>
+      <select id="monthSelect" [(ngModel)]="selectedMonth" (change)="onMonthChange()" class="form-select">
+        <option *ngFor="let month of availableMonths" [value]="month">{{ month }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="content">
+    <div *ngIf="loading" class="loading">
+      <p>Loading dashboard data...</p>
+    </div>
+
+    <div *ngIf="error" class="error">
+      <p>{{ error }}</p>
+      <button class="btn btn-secondary" (click)="loadDashboardData()">Retry</button>
+    </div>
+
+    <div *ngIf="!loading && !error" class="dashboard-table-container">
+      <table class="dashboard-table" *ngIf="dashboardData.length > 0">
+        <thead>
+          <tr>
+            <th>LoB</th>
+            <th>License Usage</th>
+            <th>Actual License Usage</th>
+            <th>Applicable Efficiency</th>
+            <th>Total Projects</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of dashboardData">
+            <td class="lob-cell">{{ data.lob }}</td>
+            <td class="metric-cell">{{ data.licenseUsage | number:'1.2-2' }}%</td>
+            <td class="metric-cell">{{ data.actualLicenseUsage | number:'1.2-2' }}%</td>
+            <td class="metric-cell">{{ data.applicableEfficiency | number:'1.2-2' }}%</td>
+            <td class="projects-cell">{{ data.totalProjects }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div *ngIf="dashboardData.length === 0" class="no-data">
+        <p>No data available for the selected month.</p>
+      </div>
+    </div>
+  </div>
+</div>

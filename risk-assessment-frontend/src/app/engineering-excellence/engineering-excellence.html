@@ -1,0 +1,32 @@
+<div class="engineering-excellence-container">
+  <div class="header">
+    <h1>Engineering Excellence Dashboard</h1>
+  </div>
+
+  <div class="tabs">
+    <button 
+      class="tab-button" 
+      [class.active]="activeTab === 'copilot'"
+      (click)="setActiveTab('copilot')">
+      Copilot Dashboard
+    </button>
+    <button 
+      class="tab-button" 
+      [class.active]="activeTab === 'dora'"
+      (click)="setActiveTab('dora')">
+      Dora Dashboard
+    </button>
+    <button 
+      class="tab-button" 
+      [class.active]="activeTab === 'dev-manifesto'"
+      (click)="setActiveTab('dev-manifesto')">
+      Dev Manifesto Dashboard
+    </button>
+  </div>
+
+  <div class="tab-content">
+    <app-copilot-dashboard *ngIf="activeTab === 'copilot'"></app-copilot-dashboard>
+    <app-dora-dashboard *ngIf="activeTab === 'dora'"></app-dora-dashboard>
+    <app-dev-manifesto-dashboard *ngIf="activeTab === 'dev-manifesto'"></app-dev-manifesto-dashboard>
+  </div>
+</div>
