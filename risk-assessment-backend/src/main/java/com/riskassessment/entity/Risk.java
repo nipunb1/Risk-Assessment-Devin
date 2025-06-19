@@ -40,6 +40,11 @@ public class Risk {
     @Column(name = "risk_remarks", columnDefinition = "TEXT")
     private String riskRemarks;
     
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "risk_impact")
+    private RiskImpact riskImpact;
+    
     public enum RiskType {
         MARKET_PRACTICE("Market Practice"),
         CONFLICT_OF_INTEREST("Conflict of Interest"),
@@ -90,16 +95,33 @@ public class Risk {
         }
     }
     
+    public enum RiskImpact {
+        LOW("Low"),
+        MEDIUM("Medium"),
+        HIGH("High");
+        
+        private final String displayName;
+        
+        RiskImpact(String displayName) {
+            this.displayName = displayName;
+        }
+        
+        public String getDisplayName() {
+            return displayName;
+        }
+    }
+    
     public Risk() {}
     
     public Risk(LocalDate riskDate, RiskType riskType, RiskProbability riskProbability, 
-                String riskDesc, RiskStatus riskStatus, String riskRemarks) {
+                String riskDesc, RiskStatus riskStatus, String riskRemarks, RiskImpact riskImpact) {
         this.riskDate = riskDate;
         this.riskType = riskType;
         this.riskProbability = riskProbability;
         this.riskDesc = riskDesc;
         this.riskStatus = riskStatus;
         this.riskRemarks = riskRemarks;
+        this.riskImpact = riskImpact;
     }
     
     public Long getRiskId() {
@@ -156,5 +178,13 @@ public class Risk {
     
     public void setRiskRemarks(String riskRemarks) {
         this.riskRemarks = riskRemarks;
+    }
+    
+    public RiskImpact getRiskImpact() {
+        return riskImpact;
+    }
+    
+    public void setRiskImpact(RiskImpact riskImpact) {
+        this.riskImpact = riskImpact;
     }
 }

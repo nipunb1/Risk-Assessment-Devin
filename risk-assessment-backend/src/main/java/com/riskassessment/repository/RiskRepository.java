@@ -16,6 +16,8 @@ public interface RiskRepository extends JpaRepository<Risk, Long> {
     
     List<Risk> findByRiskProbability(Risk.RiskProbability riskProbability);
     
+    List<Risk> findByRiskImpact(Risk.RiskImpact riskImpact);
+    
     @Query("SELECT r FROM Risk r ORDER BY r.riskDate DESC")
     List<Risk> findAllOrderByRiskDateDesc();
 }

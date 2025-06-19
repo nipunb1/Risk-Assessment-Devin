@@ -6,6 +6,7 @@ export interface Risk {
   riskDesc: string;
   riskStatus: RiskStatus;
   riskRemarks: string;
+  riskImpact: RiskImpact;
 }
 
 export enum RiskType {
@@ -28,8 +29,15 @@ export enum RiskStatus {
   CLOSED = 'CLOSED'
 }
 
+export enum RiskImpact {
+  LOW = 'LOW',
+  MEDIUM = 'MEDIUM',
+  HIGH = 'HIGH'
+}
+
 export interface RiskEnums {
   riskTypes: { value: string; displayName: string }[];
   riskProbabilities: { value: string; displayName: string }[];
   riskStatuses: { value: string; displayName: string }[];
+  riskImpacts: { value: string; displayName: string }[];
 }

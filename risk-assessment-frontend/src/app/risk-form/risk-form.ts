@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RiskService } from '../services/risk.service';
-import { Risk, RiskType, RiskProbability, RiskStatus, RiskEnums } from '../models/risk.model';
+import { Risk, RiskType, RiskProbability, RiskStatus, RiskImpact, RiskEnums } from '../models/risk.model';
 
 @Component({
   selector: 'app-risk-form',
@@ -18,7 +18,8 @@ export class RiskFormComponent implements OnInit {
     riskProbability: RiskProbability.LOW,
     riskDesc: '',
     riskStatus: RiskStatus.OPEN,
-    riskRemarks: ''
+    riskRemarks: '',
+    riskImpact: RiskImpact.LOW
   };
   
   isEditMode = false;
@@ -136,6 +137,15 @@ export class RiskFormComponent implements OnInit {
       case 'IN_PROGRESS': return 'In Progress';
       case 'CLOSED': return 'Closed';
       default: return status;
+    }
+  }
+
+  getRiskImpactDisplay(impact: string): string {
+    switch (impact) {
+      case 'LOW': return 'Low';
+      case 'MEDIUM': return 'Medium';
+      case 'HIGH': return 'High';
+      default: return impact;
     }
   }
 }

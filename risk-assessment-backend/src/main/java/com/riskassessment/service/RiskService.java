@@ -43,6 +43,7 @@ public class RiskService {
                     existingRisk.setRiskDesc(riskDTO.getRiskDesc());
                     existingRisk.setRiskStatus(riskDTO.getRiskStatus());
                     existingRisk.setRiskRemarks(riskDTO.getRiskRemarks());
+                    existingRisk.setRiskImpact(riskDTO.getRiskImpact());
                     Risk updatedRisk = riskRepository.save(existingRisk);
                     return new RiskDTO(updatedRisk);
                 });
@@ -72,6 +73,13 @@ public class RiskService {
     
     public List<RiskDTO> getRisksByProbability(Risk.RiskProbability probability) {
         return riskRepository.findByRiskProbability(probability)
+                .stream()
+                .map(RiskDTO::new)
+                .collect(Collectors.toList());
+    }
+    
+    public List<RiskDTO> getRisksByImpact(Risk.RiskImpact impact) {
+        return riskRepository.findByRiskImpact(impact)
                 .stream()
                 .map(RiskDTO::new)
                 .collect(Collectors.toList());

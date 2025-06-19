@@ -81,6 +81,20 @@
       </div>
 
       <div class="form-group">
+        <label for="riskImpact">Risk Impact *</label>
+        <select 
+          id="riskImpact" 
+          name="riskImpact"
+          [(ngModel)]="risk.riskImpact" 
+          required 
+          class="form-control">
+          <option value="LOW">Low</option>
+          <option value="MEDIUM">Medium</option>
+          <option value="HIGH">High</option>
+        </select>
+      </div>
+
+      <div class="form-group">
         <label for="riskRemarks">Updates/Remarks</label>
         <textarea 
           id="riskRemarks" 

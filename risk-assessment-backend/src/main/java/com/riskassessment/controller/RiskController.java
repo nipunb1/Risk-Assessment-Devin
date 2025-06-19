@@ -71,6 +71,12 @@ public class RiskController {
         return ResponseEntity.ok(risks);
     }
     
+    @GetMapping("/impact/{impact}")
+    public ResponseEntity<List<RiskDTO>> getRisksByImpact(@PathVariable Risk.RiskImpact impact) {
+        List<RiskDTO> risks = riskService.getRisksByImpact(impact);
+        return ResponseEntity.ok(risks);
+    }
+    
     @GetMapping("/enums")
     public ResponseEntity<EnumValues> getEnumValues() {
         EnumValues enumValues = new EnumValues();
@@ -81,5 +87,6 @@ public class RiskController {
         public Risk.RiskType[] riskTypes = Risk.RiskType.values();
         public Risk.RiskProbability[] riskProbabilities = Risk.RiskProbability.values();
         public Risk.RiskStatus[] riskStatuses = Risk.RiskStatus.values();
+        public Risk.RiskImpact[] riskImpacts = Risk.RiskImpact.values();
     }
 }

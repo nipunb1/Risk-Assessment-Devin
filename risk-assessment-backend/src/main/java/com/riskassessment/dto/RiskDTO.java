@@ -26,6 +26,9 @@ public class RiskDTO {
     
     private String riskRemarks;
     
+    @NotNull
+    private Risk.RiskImpact riskImpact;
+    
     public RiskDTO() {}
     
     public RiskDTO(Risk risk) {
@@ -36,6 +39,7 @@ public class RiskDTO {
         this.riskDesc = risk.getRiskDesc();
         this.riskStatus = risk.getRiskStatus();
         this.riskRemarks = risk.getRiskRemarks();
+        this.riskImpact = risk.getRiskImpact();
     }
     
     public Risk toEntity() {
@@ -47,6 +51,7 @@ public class RiskDTO {
         risk.setRiskDesc(this.riskDesc);
         risk.setRiskStatus(this.riskStatus);
         risk.setRiskRemarks(this.riskRemarks);
+        risk.setRiskImpact(this.riskImpact);
         return risk;
     }
     
@@ -104,5 +109,13 @@ public class RiskDTO {
     
     public void setRiskRemarks(String riskRemarks) {
         this.riskRemarks = riskRemarks;
+    }
+    
+    public Risk.RiskImpact getRiskImpact() {
+        return riskImpact;
+    }
+    
+    public void setRiskImpact(Risk.RiskImpact riskImpact) {
+        this.riskImpact = riskImpact;
     }
 }
