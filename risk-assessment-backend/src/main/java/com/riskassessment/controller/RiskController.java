@@ -38,7 +38,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/risks")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = {"http://localhost:4200", "https://risk-assessment-app-tunnel-i30jgj31.devinapps.com"})
 public class RiskController {
     
     @Autowired

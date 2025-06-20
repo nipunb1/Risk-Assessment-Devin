@@ -56,16 +56,20 @@ public class RiskService {
     public Optional<RiskDTO> updateRisk(Long id, RiskDTO riskDTO) {
         return riskRepository.findById(id)
                 .map(existingRisk -> {
-                    existingRisk.setRiskDate(riskDTO.getRiskDate());
-                    existingRisk.setRiskType(riskDTO.getRiskType());
-                    existingRisk.setRiskProbability(riskDTO.getRiskProbability());
-                    existingRisk.setRiskDesc(riskDTO.getRiskDesc());
-                    existingRisk.setRiskStatus(riskDTO.getRiskStatus());
-                    existingRisk.setRiskRemarks(riskDTO.getRiskRemarks());
-                    existingRisk.setRiskImpact(riskDTO.getRiskImpact());
+                    mapDtoToEntity(riskDTO, existingRisk);
                     Risk updatedRisk = riskRepository.save(existingRisk);
                     return new RiskDTO(updatedRisk);
                 });
+    }
+    
+    private void mapDtoToEntity(RiskDTO riskDTO, Risk existingRisk) {
+        existingRisk.setRiskDate(riskDTO.getRiskDate());
+        existingRisk.setRiskType(riskDTO.getRiskType());
+        existingRisk.setRiskProbability(riskDTO.getRiskProbability());
+        existingRisk.setRiskDesc(riskDTO.getRiskDesc());
+        existingRisk.setRiskStatus(riskDTO.getRiskStatus());
+        existingRisk.setRiskRemarks(riskDTO.getRiskRemarks());
+        existingRisk.setRiskImpact(riskDTO.getRiskImpact());
     }
     
     public boolean deleteRisk(Long id) {
