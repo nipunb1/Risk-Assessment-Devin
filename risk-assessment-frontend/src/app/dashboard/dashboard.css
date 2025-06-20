@@ -86,7 +86,7 @@
   background-color: #f8f9fa;
 }
 
-.description-cell, .remarks-cell {
+.remarks-cell {
   max-width: 200px;
   word-wrap: break-word;
   overflow-wrap: break-word;
