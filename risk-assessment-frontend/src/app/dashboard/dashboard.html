@@ -32,7 +32,6 @@
             <th>Date</th>
             <th>Type</th>
             <th>Probability</th>
-            <th>Description</th>
             <th>Status</th>
             <th>Remarks</th>
             <th>Actions</th>
@@ -48,7 +47,6 @@
                 {{ getRiskProbabilityDisplay(risk.riskProbability) }}
               </span>
             </td>
-            <td class="description-cell">{{ risk.riskDesc }}</td>
             <td>
               <span class="status-badge" [ngClass]="getStatusClass(risk.riskStatus)">
                 {{ getRiskStatusDisplay(risk.riskStatus) }}
