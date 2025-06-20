@@ -1,5 +1,24 @@
 package com.riskassessment.service;
 
+/**
+ * Risk Service - Business logic layer for risk management operations.
+ * 
+ * This service class provides the core business logic for managing risk assessments,
+ * including CRUD operations, data validation, and business rule enforcement.
+ * It acts as an intermediary between the controller layer and the data access layer,
+ * ensuring proper data transformation and business logic application.
+ * 
+ * Key responsibilities:
+ * - Risk data validation and transformation
+ * - Business rule enforcement
+ * - DTO to Entity mapping and vice versa
+ * - Transaction management coordination
+ * 
+ * @author Risk Assessment System
+ * @version 1.0
+ * @since 1.0
+ */
+
 import com.riskassessment.dto.RiskDTO;
 import com.riskassessment.entity.Risk;
 import com.riskassessment.repository.RiskRepository;

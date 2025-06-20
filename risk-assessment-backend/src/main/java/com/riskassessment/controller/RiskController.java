@@ -1,5 +1,29 @@
 package com.riskassessment.controller;
 
+/**
+ * Risk Controller - REST API endpoints for risk management operations.
+ * 
+ * This controller provides RESTful web services for managing risk assessments.
+ * It handles HTTP requests, performs input validation, delegates business logic
+ * to the service layer, and returns appropriate HTTP responses.
+ * 
+ * Supported operations:
+ * - GET /api/risks - Retrieve all risks
+ * - GET /api/risks/{id} - Retrieve specific risk by ID
+ * - POST /api/risks - Create new risk assessment
+ * - PUT /api/risks/{id} - Update existing risk
+ * - DELETE /api/risks/{id} - Delete risk assessment
+ * - GET /api/risks/status/{status} - Filter risks by status
+ * - GET /api/risks/enums - Get enumeration values
+ * 
+ * All endpoints return JSON responses and follow REST conventions for
+ * HTTP status codes and error handling.
+ * 
+ * @author Risk Assessment System
+ * @version 1.0
+ * @since 1.0
+ */
+
 import com.riskassessment.dto.RiskDTO;
 import com.riskassessment.entity.Risk;
 import com.riskassessment.service.RiskService;
