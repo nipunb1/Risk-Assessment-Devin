@@ -15,6 +15,7 @@ public class RiskTest {
         risk.setRiskDesc("Test risk description");
         risk.setRiskStatus(Risk.RiskStatus.OPEN);
         risk.setRiskRemarks("Test remarks");
+        risk.setRiskImpact(Risk.RiskImpact.HIGH);
         
         assertEquals(LocalDate.now(), risk.getRiskDate());
         assertEquals(Risk.RiskType.MARKET_PRACTICE, risk.getRiskType());
@@ -22,13 +23,14 @@ public class RiskTest {
         assertEquals("Test risk description", risk.getRiskDesc());
         assertEquals(Risk.RiskStatus.OPEN, risk.getRiskStatus());
         assertEquals("Test remarks", risk.getRiskRemarks());
+        assertEquals(Risk.RiskImpact.HIGH, risk.getRiskImpact());
     }
     
     @Test
     public void testRiskConstructorWithParameters() {
         LocalDate testDate = LocalDate.of(2023, 6, 15);
         Risk risk = new Risk(testDate, Risk.RiskType.REGULATORY, Risk.RiskProbability.MEDIUM,
-                           "Regulatory compliance risk", Risk.RiskStatus.IN_PROGRESS, "Under review");
+                           "Regulatory compliance risk", Risk.RiskStatus.IN_PROGRESS, "Under review", Risk.RiskImpact.MEDIUM);
         
         assertEquals(testDate, risk.getRiskDate());
         assertEquals(Risk.RiskType.REGULATORY, risk.getRiskType());
@@ -36,6 +38,7 @@ public class RiskTest {
         assertEquals("Regulatory compliance risk", risk.getRiskDesc());
         assertEquals(Risk.RiskStatus.IN_PROGRESS, risk.getRiskStatus());
         assertEquals("Under review", risk.getRiskRemarks());
+        assertEquals(Risk.RiskImpact.MEDIUM, risk.getRiskImpact());
     }
     
     @Test
@@ -59,5 +62,12 @@ public class RiskTest {
         assertEquals("Open", Risk.RiskStatus.OPEN.getDisplayName());
         assertEquals("In Progress", Risk.RiskStatus.IN_PROGRESS.getDisplayName());
         assertEquals("Closed", Risk.RiskStatus.CLOSED.getDisplayName());
+    }
+    
+    @Test
+    public void testRiskImpactEnum() {
+        assertEquals("Low", Risk.RiskImpact.LOW.getDisplayName());
+        assertEquals("Medium", Risk.RiskImpact.MEDIUM.getDisplayName());
+        assertEquals("High", Risk.RiskImpact.HIGH.getDisplayName());
     }
 }

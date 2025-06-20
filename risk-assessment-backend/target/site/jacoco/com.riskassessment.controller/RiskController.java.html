@@ -71,16 +71,23 @@ import java.util.Optional;
 <span class="nc" id="L71">        return ResponseEntity.ok(risks);</span>
     }
     
-    @GetMapping(&quot;/enums&quot;)
-    public ResponseEntity&lt;EnumValues&gt; getEnumValues() {
-<span class="fc" id="L76">        EnumValues enumValues = new EnumValues();</span>
-<span class="fc" id="L77">        return ResponseEntity.ok(enumValues);</span>
+    @GetMapping(&quot;/impact/{impact}&quot;)
+    public ResponseEntity&lt;List&lt;RiskDTO&gt;&gt; getRisksByImpact(@PathVariable Risk.RiskImpact impact) {
+<span class="nc" id="L76">        List&lt;RiskDTO&gt; risks = riskService.getRisksByImpact(impact);</span>
+<span class="nc" id="L77">        return ResponseEntity.ok(risks);</span>
     }
     
-<span class="fc" id="L80">    public static class EnumValues {</span>
-<span class="fc" id="L81">        public Risk.RiskType[] riskTypes = Risk.RiskType.values();</span>
-<span class="fc" id="L82">        public Risk.RiskProbability[] riskProbabilities = Risk.RiskProbability.values();</span>
-<span class="fc" id="L83">        public Risk.RiskStatus[] riskStatuses = Risk.RiskStatus.values();</span>
+    @GetMapping(&quot;/enums&quot;)
+    public ResponseEntity&lt;EnumValues&gt; getEnumValues() {
+<span class="fc" id="L82">        EnumValues enumValues = new EnumValues();</span>
+<span class="fc" id="L83">        return ResponseEntity.ok(enumValues);</span>
+    }
+    
+<span class="fc" id="L86">    public static class EnumValues {</span>
+<span class="fc" id="L87">        public Risk.RiskType[] riskTypes = Risk.RiskType.values();</span>
+<span class="fc" id="L88">        public Risk.RiskProbability[] riskProbabilities = Risk.RiskProbability.values();</span>
+<span class="fc" id="L89">        public Risk.RiskStatus[] riskStatuses = Risk.RiskStatus.values();</span>
+<span class="fc" id="L90">        public Risk.RiskImpact[] riskImpacts = Risk.RiskImpact.values();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

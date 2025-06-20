@@ -26,84 +26,97 @@ public class RiskDTO {
     
     private String riskRemarks;
     
-<span class="fc" id="L29">    public RiskDTO() {}</span>
+    @NotNull
+    private Risk.RiskImpact riskImpact;
     
-<span class="fc" id="L31">    public RiskDTO(Risk risk) {</span>
-<span class="fc" id="L32">        this.riskId = risk.getRiskId();</span>
-<span class="fc" id="L33">        this.riskDate = risk.getRiskDate();</span>
-<span class="fc" id="L34">        this.riskType = risk.getRiskType();</span>
-<span class="fc" id="L35">        this.riskProbability = risk.getRiskProbability();</span>
-<span class="fc" id="L36">        this.riskDesc = risk.getRiskDesc();</span>
-<span class="fc" id="L37">        this.riskStatus = risk.getRiskStatus();</span>
-<span class="fc" id="L38">        this.riskRemarks = risk.getRiskRemarks();</span>
-<span class="fc" id="L39">    }</span>
+<span class="fc" id="L32">    public RiskDTO() {}</span>
+    
+<span class="fc" id="L34">    public RiskDTO(Risk risk) {</span>
+<span class="fc" id="L35">        this.riskId = risk.getRiskId();</span>
+<span class="fc" id="L36">        this.riskDate = risk.getRiskDate();</span>
+<span class="fc" id="L37">        this.riskType = risk.getRiskType();</span>
+<span class="fc" id="L38">        this.riskProbability = risk.getRiskProbability();</span>
+<span class="fc" id="L39">        this.riskDesc = risk.getRiskDesc();</span>
+<span class="fc" id="L40">        this.riskStatus = risk.getRiskStatus();</span>
+<span class="fc" id="L41">        this.riskRemarks = risk.getRiskRemarks();</span>
+<span class="fc" id="L42">        this.riskImpact = risk.getRiskImpact();</span>
+<span class="fc" id="L43">    }</span>
     
     public Risk toEntity() {
-<span class="fc" id="L42">        Risk risk = new Risk();</span>
-<span class="fc" id="L43">        risk.setRiskId(this.riskId);</span>
-<span class="fc" id="L44">        risk.setRiskDate(this.riskDate);</span>
-<span class="fc" id="L45">        risk.setRiskType(this.riskType);</span>
-<span class="fc" id="L46">        risk.setRiskProbability(this.riskProbability);</span>
-<span class="fc" id="L47">        risk.setRiskDesc(this.riskDesc);</span>
-<span class="fc" id="L48">        risk.setRiskStatus(this.riskStatus);</span>
-<span class="fc" id="L49">        risk.setRiskRemarks(this.riskRemarks);</span>
-<span class="fc" id="L50">        return risk;</span>
+<span class="fc" id="L46">        Risk risk = new Risk();</span>
+<span class="fc" id="L47">        risk.setRiskId(this.riskId);</span>
+<span class="fc" id="L48">        risk.setRiskDate(this.riskDate);</span>
+<span class="fc" id="L49">        risk.setRiskType(this.riskType);</span>
+<span class="fc" id="L50">        risk.setRiskProbability(this.riskProbability);</span>
+<span class="fc" id="L51">        risk.setRiskDesc(this.riskDesc);</span>
+<span class="fc" id="L52">        risk.setRiskStatus(this.riskStatus);</span>
+<span class="fc" id="L53">        risk.setRiskRemarks(this.riskRemarks);</span>
+<span class="fc" id="L54">        risk.setRiskImpact(this.riskImpact);</span>
+<span class="fc" id="L55">        return risk;</span>
     }
     
     public Long getRiskId() {
-<span class="fc" id="L54">        return riskId;</span>
+<span class="fc" id="L59">        return riskId;</span>
     }
     
     public void setRiskId(Long riskId) {
-<span class="fc" id="L58">        this.riskId = riskId;</span>
-<span class="fc" id="L59">    }</span>
+<span class="fc" id="L63">        this.riskId = riskId;</span>
+<span class="fc" id="L64">    }</span>
     
     public LocalDate getRiskDate() {
-<span class="fc" id="L62">        return riskDate;</span>
+<span class="fc" id="L67">        return riskDate;</span>
     }
     
     public void setRiskDate(LocalDate riskDate) {
-<span class="fc" id="L66">        this.riskDate = riskDate;</span>
-<span class="fc" id="L67">    }</span>
+<span class="fc" id="L71">        this.riskDate = riskDate;</span>
+<span class="fc" id="L72">    }</span>
     
     public Risk.RiskType getRiskType() {
-<span class="fc" id="L70">        return riskType;</span>
+<span class="fc" id="L75">        return riskType;</span>
     }
     
     public void setRiskType(Risk.RiskType riskType) {
-<span class="fc" id="L74">        this.riskType = riskType;</span>
-<span class="fc" id="L75">    }</span>
+<span class="fc" id="L79">        this.riskType = riskType;</span>
+<span class="fc" id="L80">    }</span>
     
     public Risk.RiskProbability getRiskProbability() {
-<span class="fc" id="L78">        return riskProbability;</span>
+<span class="fc" id="L83">        return riskProbability;</span>
     }
     
     public void setRiskProbability(Risk.RiskProbability riskProbability) {
-<span class="fc" id="L82">        this.riskProbability = riskProbability;</span>
-<span class="fc" id="L83">    }</span>
+<span class="fc" id="L87">        this.riskProbability = riskProbability;</span>
+<span class="fc" id="L88">    }</span>
     
     public String getRiskDesc() {
-<span class="fc" id="L86">        return riskDesc;</span>
+<span class="fc" id="L91">        return riskDesc;</span>
     }
     
     public void setRiskDesc(String riskDesc) {
-<span class="fc" id="L90">        this.riskDesc = riskDesc;</span>
-<span class="fc" id="L91">    }</span>
+<span class="fc" id="L95">        this.riskDesc = riskDesc;</span>
+<span class="fc" id="L96">    }</span>
     
     public Risk.RiskStatus getRiskStatus() {
-<span class="fc" id="L94">        return riskStatus;</span>
+<span class="fc" id="L99">        return riskStatus;</span>
     }
     
     public void setRiskStatus(Risk.RiskStatus riskStatus) {
-<span class="fc" id="L98">        this.riskStatus = riskStatus;</span>
-<span class="fc" id="L99">    }</span>
+<span class="fc" id="L103">        this.riskStatus = riskStatus;</span>
+<span class="fc" id="L104">    }</span>
     
     public String getRiskRemarks() {
-<span class="fc" id="L102">        return riskRemarks;</span>
+<span class="fc" id="L107">        return riskRemarks;</span>
     }
     
     public void setRiskRemarks(String riskRemarks) {
-<span class="fc" id="L106">        this.riskRemarks = riskRemarks;</span>
-<span class="fc" id="L107">    }</span>
+<span class="fc" id="L111">        this.riskRemarks = riskRemarks;</span>
+<span class="fc" id="L112">    }</span>
+    
+    public Risk.RiskImpact getRiskImpact() {
+<span class="fc" id="L115">        return riskImpact;</span>
+    }
+    
+    public void setRiskImpact(Risk.RiskImpact riskImpact) {
+<span class="fc" id="L119">        this.riskImpact = riskImpact;</span>
+<span class="fc" id="L120">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

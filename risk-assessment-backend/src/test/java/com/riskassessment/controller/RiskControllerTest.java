@@ -46,6 +46,7 @@ public class RiskControllerTest {
         testRiskDTO.setRiskDesc("Test risk description");
         testRiskDTO.setRiskStatus(Risk.RiskStatus.OPEN);
         testRiskDTO.setRiskRemarks("Test remarks");
+        testRiskDTO.setRiskImpact(Risk.RiskImpact.HIGH);
     }
     
     @Test

@@ -43,38 +43,46 @@ import java.util.stream.Collectors;
 <span class="fc" id="L43">                    existingRisk.setRiskDesc(riskDTO.getRiskDesc());</span>
 <span class="fc" id="L44">                    existingRisk.setRiskStatus(riskDTO.getRiskStatus());</span>
 <span class="fc" id="L45">                    existingRisk.setRiskRemarks(riskDTO.getRiskRemarks());</span>
-<span class="fc" id="L46">                    Risk updatedRisk = riskRepository.save(existingRisk);</span>
-<span class="fc" id="L47">                    return new RiskDTO(updatedRisk);</span>
+<span class="fc" id="L46">                    existingRisk.setRiskImpact(riskDTO.getRiskImpact());</span>
+<span class="fc" id="L47">                    Risk updatedRisk = riskRepository.save(existingRisk);</span>
+<span class="fc" id="L48">                    return new RiskDTO(updatedRisk);</span>
                 });
     }
     
     public boolean deleteRisk(Long id) {
-<span class="fc bfc" id="L52" title="All 2 branches covered.">        if (riskRepository.existsById(id)) {</span>
-<span class="fc" id="L53">            riskRepository.deleteById(id);</span>
-<span class="fc" id="L54">            return true;</span>
+<span class="fc bfc" id="L53" title="All 2 branches covered.">        if (riskRepository.existsById(id)) {</span>
+<span class="fc" id="L54">            riskRepository.deleteById(id);</span>
+<span class="fc" id="L55">            return true;</span>
         }
-<span class="fc" id="L56">        return false;</span>
+<span class="fc" id="L57">        return false;</span>
     }
     
     public List&lt;RiskDTO&gt; getRisksByStatus(Risk.RiskStatus status) {
-<span class="fc" id="L60">        return riskRepository.findByRiskStatus(status)</span>
-<span class="fc" id="L61">                .stream()</span>
-<span class="fc" id="L62">                .map(RiskDTO::new)</span>
-<span class="fc" id="L63">                .collect(Collectors.toList());</span>
+<span class="fc" id="L61">        return riskRepository.findByRiskStatus(status)</span>
+<span class="fc" id="L62">                .stream()</span>
+<span class="fc" id="L63">                .map(RiskDTO::new)</span>
+<span class="fc" id="L64">                .collect(Collectors.toList());</span>
     }
     
     public List&lt;RiskDTO&gt; getRisksByType(Risk.RiskType type) {
-<span class="fc" id="L67">        return riskRepository.findByRiskType(type)</span>
-<span class="fc" id="L68">                .stream()</span>
-<span class="fc" id="L69">                .map(RiskDTO::new)</span>
-<span class="fc" id="L70">                .collect(Collectors.toList());</span>
+<span class="fc" id="L68">        return riskRepository.findByRiskType(type)</span>
+<span class="fc" id="L69">                .stream()</span>
+<span class="fc" id="L70">                .map(RiskDTO::new)</span>
+<span class="fc" id="L71">                .collect(Collectors.toList());</span>
     }
     
     public List&lt;RiskDTO&gt; getRisksByProbability(Risk.RiskProbability probability) {
-<span class="fc" id="L74">        return riskRepository.findByRiskProbability(probability)</span>
-<span class="fc" id="L75">                .stream()</span>
-<span class="fc" id="L76">                .map(RiskDTO::new)</span>
-<span class="fc" id="L77">                .collect(Collectors.toList());</span>
+<span class="fc" id="L75">        return riskRepository.findByRiskProbability(probability)</span>
+<span class="fc" id="L76">                .stream()</span>
+<span class="fc" id="L77">                .map(RiskDTO::new)</span>
+<span class="fc" id="L78">                .collect(Collectors.toList());</span>
+    }
+    
+    public List&lt;RiskDTO&gt; getRisksByImpact(Risk.RiskImpact impact) {
+<span class="nc" id="L82">        return riskRepository.findByRiskImpact(impact)</span>
+<span class="nc" id="L83">                .stream()</span>
+<span class="nc" id="L84">                .map(RiskDTO::new)</span>
+<span class="nc" id="L85">                .collect(Collectors.toList());</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

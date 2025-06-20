@@ -1,5 +1,22 @@
 package com.riskassessment.entity;
 
+/**
+ * Risk Entity - JPA entity representing a risk assessment record in the database.
+ * 
+ * This entity encapsulates all information related to a risk including its identification,
+ * categorization, assessment details, and current status. The entity uses JPA annotations
+ * for database mapping and includes validation constraints to ensure data integrity.
+ * 
+ * The Risk entity supports the following risk management workflow:
+ * 1. Risk identification with date, type, and description
+ * 2. Risk assessment with probability and impact evaluation
+ * 3. Risk tracking with status updates and remarks
+ * 
+ * @author Risk Assessment System
+ * @version 1.0
+ * @since 1.0
+ */
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
