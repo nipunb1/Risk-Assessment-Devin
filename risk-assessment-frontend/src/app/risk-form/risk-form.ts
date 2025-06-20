@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RiskService } from '../services/risk.service';
+import { EnumUtilityService } from '../services/enum-utility.service';
+import { ErrorHandlingService } from '../services/error-handling.service';
 import { Risk, RiskType, RiskProbability, RiskStatus, RiskImpact, RiskEnums } from '../models/risk.model';
 
 @Component({
@@ -29,6 +31,8 @@ export class RiskFormComponent implements OnInit {
 
   constructor(
     private riskService: RiskService,
+    private enumUtility: EnumUtilityService,
+    private errorHandler: ErrorHandlingService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
@@ -49,7 +53,7 @@ export class RiskFormComponent implements OnInit {
         this.enumValues = enums;
       },
       error: (error) => {
-        console.error('Error loading enum values:', error);
+        this.errorHandler.handleError(error, 'Failed to load form options');
       }
     });
   }
@@ -62,9 +66,9 @@ export class RiskFormComponent implements OnInit {
         this.loading = false;
       },
       error: (error) => {
-        this.error = 'Failed to load risk. Please try again.';
+        this.error = this.errorHandler.getErrorMessage('load risk');
         this.loading = false;
-        console.error('Error loading risk:', error);
+        this.errorHandler.handleError(error, this.error);
       }
     });
   }
@@ -86,11 +90,10 @@ export class RiskFormComponent implements OnInit {
         this.router.navigate(['/dashboard']);
       },
       error: (error) => {
-        this.error = this.isEditMode 
-          ? 'Failed to update risk. Please try again.'
-          : 'Failed to create risk. Please try again.';
+        const operation = this.isEditMode ? 'update risk' : 'create risk';
+        this.error = this.errorHandler.getErrorMessage(operation);
         this.loading = false;
-        console.error('Error saving risk:', error);
+        this.errorHandler.handleError(error, this.error);
       }
     });
   }
@@ -112,40 +115,18 @@ export class RiskFormComponent implements OnInit {
   }
 
   getRiskTypeDisplay(type: string): string {
-    switch (type) {
-      case 'MARKET_PRACTICE': return 'Market Practice';
-      case 'CONFLICT_OF_INTEREST': return 'Conflict of Interest';
-      case 'PRICING': return 'Pricing';
-      case 'REGULATORY': return 'Regulatory';
-      case 'GOVERNANCE': return 'Governance';
-      default: return type;
-    }
+    return this.enumUtility.getRiskTypeDisplay(type);
   }
 
   getRiskProbabilityDisplay(probability: string): string {
-    switch (probability) {
-      case 'LOW': return 'Low';
-      case 'MEDIUM': return 'Medium';
-      case 'HIGH': return 'High';
-      default: return probability;
-    }
+    return this.enumUtility.getRiskProbabilityDisplay(probability);
   }
 
   getRiskStatusDisplay(status: string): string {
-    switch (status) {
-      case 'OPEN': return 'Open';
-      case 'IN_PROGRESS': return 'In Progress';
-      case 'CLOSED': return 'Closed';
-      default: return status;
-    }
+    return this.enumUtility.getRiskStatusDisplay(status);
   }
 
   getRiskImpactDisplay(impact: string): string {
-    switch (impact) {
-      case 'LOW': return 'Low';
-      case 'MEDIUM': return 'Medium';
-      case 'HIGH': return 'High';
-      default: return impact;
-    }
+    return this.enumUtility.getRiskImpactDisplay(impact);
   }
 }

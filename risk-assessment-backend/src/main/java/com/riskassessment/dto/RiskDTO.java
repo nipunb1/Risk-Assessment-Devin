@@ -3,6 +3,7 @@ package com.riskassessment.dto;
 import com.riskassessment.entity.Risk;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 public class RiskDTO {
@@ -19,11 +20,13 @@ public class RiskDTO {
     private Risk.RiskProbability riskProbability;
     
     @NotBlank
+    @Size(max = 1000, message = "Risk description cannot exceed 1000 characters")
     private String riskDesc;
     
     @NotNull
     private Risk.RiskStatus riskStatus;
     
+    @Size(max = 500, message = "Risk remarks cannot exceed 500 characters")
     private String riskRemarks;
     
     @NotNull

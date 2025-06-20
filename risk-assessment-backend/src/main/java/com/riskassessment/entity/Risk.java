@@ -20,6 +20,7 @@ package com.riskassessment.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 @Entity
@@ -46,6 +47,7 @@ public class Risk {
     private RiskProbability riskProbability;
     
     @NotBlank
+    @Size(max = 1000, message = "Risk description cannot exceed 1000 characters")
     @Column(name = "risk_desc", columnDefinition = "TEXT")
     private String riskDesc;
     
@@ -54,6 +56,7 @@ public class Risk {
     @Column(name = "risk_status")
     private RiskStatus riskStatus;
     
+    @Size(max = 500, message = "Risk remarks cannot exceed 500 characters")
     @Column(name = "risk_remarks", columnDefinition = "TEXT")
     private String riskRemarks;
     
@@ -62,67 +65,71 @@ public class Risk {
     @Column(name = "risk_impact")
     private RiskImpact riskImpact;
     
-    public enum RiskType {
+    public enum RiskType implements DisplayableEnum {
         MARKET_PRACTICE("Market Practice"),
         CONFLICT_OF_INTEREST("Conflict of Interest"),
         PRICING("Pricing"),
         REGULATORY("Regulatory"),
         GOVERNANCE("Governance");
-        
+
         private final String displayName;
-        
+
         RiskType(String displayName) {
             this.displayName = displayName;
         }
-        
+
+        @Override
         public String getDisplayName() {
             return displayName;
         }
     }
     
-    public enum RiskProbability {
+    public enum RiskProbability implements DisplayableEnum {
         LOW("Low"),
         MEDIUM("Medium"),
         HIGH("High");
-        
+
         private final String displayName;
-        
+
         RiskProbability(String displayName) {
             this.displayName = displayName;
         }
-        
+
+        @Override
         public String getDisplayName() {
             return displayName;
         }
     }
     
-    public enum RiskStatus {
+    public enum RiskStatus implements DisplayableEnum {
         OPEN("Open"),
         IN_PROGRESS("In Progress"),
         CLOSED("Closed");
-        
+
         private final String displayName;
-        
+
         RiskStatus(String displayName) {
             this.displayName = displayName;
         }
-        
+
+        @Override
         public String getDisplayName() {
             return displayName;
         }
     }
     
-    public enum RiskImpact {
+    public enum RiskImpact implements DisplayableEnum {
         LOW("Low"),
         MEDIUM("Medium"),
         HIGH("High");
-        
+
         private final String displayName;
-        
+
         RiskImpact(String displayName) {
             this.displayName = displayName;
         }
-        
+
+        @Override
         public String getDisplayName() {
             return displayName;
         }
