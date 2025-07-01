@@ -16,7 +16,6 @@ export class RiskFormComponent implements OnInit {
     riskDate: new Date().toISOString().split('T')[0],
     riskType: RiskType.MARKET_PRACTICE,
     riskProbability: RiskProbability.LOW,
-    riskDesc: '',
     riskStatus: RiskStatus.OPEN,
     riskRemarks: '',
     riskImpact: RiskImpact.LOW
@@ -96,10 +95,6 @@ export class RiskFormComponent implements OnInit {
   }
 
   validateForm(): boolean {
-    if (!this.risk.riskDesc.trim()) {
-      this.error = 'Risk description is required.';
-      return false;
-    }
     if (!this.risk.riskDate) {
       this.error = 'Risk date is required.';
       return false;

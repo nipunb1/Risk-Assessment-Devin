@@ -3,7 +3,6 @@ export interface Risk {
   riskDate: string;
   riskType: RiskType;
   riskProbability: RiskProbability;
-  riskDesc: string;
   riskStatus: RiskStatus;
   riskRemarks: string;
   riskImpact: RiskImpact;

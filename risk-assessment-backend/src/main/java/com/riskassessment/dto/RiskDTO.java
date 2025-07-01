@@ -18,8 +18,6 @@ public class RiskDTO {
     @NotNull
     private Risk.RiskProbability riskProbability;
     
-    @NotBlank
-    private String riskDesc;
     
     @NotNull
     private Risk.RiskStatus riskStatus;
@@ -36,7 +34,6 @@ public class RiskDTO {
         this.riskDate = risk.getRiskDate();
         this.riskType = risk.getRiskType();
         this.riskProbability = risk.getRiskProbability();
-        this.riskDesc = risk.getRiskDesc();
         this.riskStatus = risk.getRiskStatus();
         this.riskRemarks = risk.getRiskRemarks();
         this.riskImpact = risk.getRiskImpact();
@@ -48,7 +45,6 @@ public class RiskDTO {
         risk.setRiskDate(this.riskDate);
         risk.setRiskType(this.riskType);
         risk.setRiskProbability(this.riskProbability);
-        risk.setRiskDesc(this.riskDesc);
         risk.setRiskStatus(this.riskStatus);
         risk.setRiskRemarks(this.riskRemarks);
         risk.setRiskImpact(this.riskImpact);
@@ -87,13 +83,6 @@ public class RiskDTO {
         this.riskProbability = riskProbability;
     }
     
-    public String getRiskDesc() {
-        return riskDesc;
-    }
-    
-    public void setRiskDesc(String riskDesc) {
-        this.riskDesc = riskDesc;
-    }
     
     public Risk.RiskStatus getRiskStatus() {
         return riskStatus;
