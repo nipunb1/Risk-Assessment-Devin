@@ -39,7 +39,6 @@ public class RiskServiceTest {
         testRisk.setRiskDate(LocalDate.now());
         testRisk.setRiskType(Risk.RiskType.MARKET_PRACTICE);
         testRisk.setRiskProbability(Risk.RiskProbability.HIGH);
-        testRisk.setRiskDesc("Test risk");
         testRisk.setRiskStatus(Risk.RiskStatus.OPEN);
         testRisk.setRiskRemarks("Test remarks");
         

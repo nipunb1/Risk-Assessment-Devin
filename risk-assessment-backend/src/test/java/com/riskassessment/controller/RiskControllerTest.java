@@ -43,7 +43,6 @@ public class RiskControllerTest {
         testRiskDTO.setRiskDate(LocalDate.now());
         testRiskDTO.setRiskType(Risk.RiskType.MARKET_PRACTICE);
         testRiskDTO.setRiskProbability(Risk.RiskProbability.HIGH);
-        testRiskDTO.setRiskDesc("Test risk description");
         testRiskDTO.setRiskStatus(Risk.RiskStatus.OPEN);
         testRiskDTO.setRiskRemarks("Test remarks");
         testRiskDTO.setRiskImpact(Risk.RiskImpact.HIGH);
@@ -57,7 +56,7 @@ public class RiskControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$[0].riskId").value(1L))
-                .andExpect(jsonPath("$[0].riskDesc").value("Test risk description"));
+;
     }
     
     @Test
@@ -68,7 +67,7 @@ public class RiskControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.riskId").value(1L))
-                .andExpect(jsonPath("$.riskDesc").value("Test risk description"));
+;
     }
     
     @Test
@@ -89,7 +88,7 @@ public class RiskControllerTest {
                 .andExpect(status().isCreated())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.riskId").value(1L))
-                .andExpect(jsonPath("$.riskDesc").value("Test risk description"));
+;
     }
     
     @Test
@@ -102,7 +101,7 @@ public class RiskControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.riskId").value(1L))
-                .andExpect(jsonPath("$.riskDesc").value("Test risk description"));
+;
     }
     
     @Test

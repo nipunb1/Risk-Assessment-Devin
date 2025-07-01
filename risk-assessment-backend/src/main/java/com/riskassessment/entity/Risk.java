@@ -45,9 +45,6 @@ public class Risk {
     @Column(name = "risk_probability")
     private RiskProbability riskProbability;
     
-    @NotBlank
-    @Column(name = "risk_desc", columnDefinition = "TEXT")
-    private String riskDesc;
     
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -131,11 +128,10 @@ public class Risk {
     public Risk() {}
     
     public Risk(LocalDate riskDate, RiskType riskType, RiskProbability riskProbability, 
-                String riskDesc, RiskStatus riskStatus, String riskRemarks, RiskImpact riskImpact) {
+                RiskStatus riskStatus, String riskRemarks, RiskImpact riskImpact) {
         this.riskDate = riskDate;
         this.riskType = riskType;
         this.riskProbability = riskProbability;
-        this.riskDesc = riskDesc;
         this.riskStatus = riskStatus;
         this.riskRemarks = riskRemarks;
         this.riskImpact = riskImpact;
@@ -173,13 +169,6 @@ public class Risk {
         this.riskProbability = riskProbability;
     }
     
-    public String getRiskDesc() {
-        return riskDesc;
-    }
-    
-    public void setRiskDesc(String riskDesc) {
-        this.riskDesc = riskDesc;
-    }
     
     public RiskStatus getRiskStatus() {
         return riskStatus;

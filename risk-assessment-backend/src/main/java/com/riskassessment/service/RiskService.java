@@ -59,7 +59,6 @@ public class RiskService {
                     existingRisk.setRiskDate(riskDTO.getRiskDate());
                     existingRisk.setRiskType(riskDTO.getRiskType());
                     existingRisk.setRiskProbability(riskDTO.getRiskProbability());
-                    existingRisk.setRiskDesc(riskDTO.getRiskDesc());
                     existingRisk.setRiskStatus(riskDTO.getRiskStatus());
                     existingRisk.setRiskRemarks(riskDTO.getRiskRemarks());
                     existingRisk.setRiskImpact(riskDTO.getRiskImpact());
