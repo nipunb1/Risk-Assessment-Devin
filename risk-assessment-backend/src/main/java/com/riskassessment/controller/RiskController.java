@@ -77,6 +77,18 @@ public class RiskController {
         return ResponseEntity.ok(enumValues);
     }
     
+    @GetMapping("/search")
+    public ResponseEntity<List<com.riskassessment.document.RiskDocument>> searchRisks(@RequestParam String keyword) {
+        List<com.riskassessment.document.RiskDocument> results = riskService.searchRisks(keyword);
+        return ResponseEntity.ok(results);
+    }
+    
+    @GetMapping("/source/{source}")
+    public ResponseEntity<List<com.riskassessment.document.RiskDocument>> getRisksBySource(@PathVariable String source) {
+        List<com.riskassessment.document.RiskDocument> risks = riskService.getRisksBySource(source);
+        return ResponseEntity.ok(risks);
+    }
+    
     public static class EnumValues {
         public Risk.RiskType[] riskTypes = Risk.RiskType.values();
         public Risk.RiskProbability[] riskProbabilities = Risk.RiskProbability.values();

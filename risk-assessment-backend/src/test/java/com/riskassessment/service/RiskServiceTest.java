@@ -166,4 +166,56 @@ public class RiskServiceTest {
         assertEquals(testRisk.getRiskId(), result.get(0).getRiskId());
         verify(riskRepository).findByRiskProbability(Risk.RiskProbability.HIGH);
     }
+    
+    @Test
+    public void testCreateRiskFromIntelligence() {
+        com.riskassessment.dto.bigdata.RiskIntelligenceEvent event = 
+            new com.riskassessment.dto.bigdata.RiskIntelligenceEvent();
+        event.setEventId("test-event-123");
+        event.setRiskType("MARKET_PRACTICE");
+        event.setRiskProbability("HIGH");
+        event.setRiskDescription("Test market risk from intelligence");
+        event.setSource("MARKET_DATA_ANALYZER");
+        event.setConfidenceScore(0.85);
+        event.setAlertLevel("HIGH");
+        
+        Risk savedRisk = new Risk();
+        savedRisk.setRiskId(1L);
+        savedRisk.setRiskDate(LocalDate.now());
+        savedRisk.setRiskType(Risk.RiskType.MARKET_PRACTICE);
+        savedRisk.setRiskProbability(Risk.RiskProbability.HIGH);
+        savedRisk.setRiskDesc("Test market risk from intelligence");
+        savedRisk.setRiskStatus(Risk.RiskStatus.OPEN);
+        savedRisk.setRiskRemarks("Auto-generated from MARKET_DATA_ANALYZER | Confidence: 0.85 | Alert Level: HIGH");
+        
+        when(riskRepository.save(any(Risk.class))).thenReturn(savedRisk);
+        
+        RiskDTO result = riskService.createRiskFromIntelligence(event);
+        
+        assertNotNull(result);
+        assertEquals(savedRisk.getRiskId(), result.getRiskId());
+        assertTrue(result.getRiskRemarks().contains("MARKET_DATA_ANALYZER"));
+        assertTrue(result.getRiskRemarks().contains("0.85"));
+        assertTrue(result.getRiskRemarks().contains("HIGH"));
+        
+        verify(riskRepository).save(any(Risk.class));
+    }
+    
+    @Test
+    public void testSearchRisks() {
+        List<com.riskassessment.document.RiskDocument> mockResults = Arrays.asList();
+        
+        List<com.riskassessment.document.RiskDocument> result = riskService.searchRisks("test keyword");
+        
+        assertNotNull(result);
+    }
+    
+    @Test
+    public void testGetRisksBySource() {
+        List<com.riskassessment.document.RiskDocument> mockResults = Arrays.asList();
+        
+        List<com.riskassessment.document.RiskDocument> result = riskService.getRisksBySource("MANUAL");
+        
+        assertNotNull(result);
+    }
 }
